@@ -1,0 +1,12 @@
+name: Publish package to package repository
+
+on:
+  release:
+    types:
+      - created
+      
+jobs:
+  publish-package:
+    steps:
+      - name: Publish Docker container to package repo
+        run: echo Hello, world.
