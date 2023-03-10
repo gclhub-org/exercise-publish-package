@@ -24,7 +24,7 @@ jobs:
 
       - name: Publish Docker container to package repo
         run: |
-          echo $GITHUB_TOKEN | docker login ghcr.io -u $USERNAME --password-stdin
+          echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u $USERNAME --password-stdin
           docker tag $ID ghcr.io/$USERNAME/$IMAGE_NAME:$IMAGE_VER
           docker push ghcr.io/$USERNAME/$IMAGE_NAME:$IMAGE_VERSION
           
