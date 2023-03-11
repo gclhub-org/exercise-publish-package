@@ -21,12 +21,12 @@ jobs:
       - name: Run Docker build
         run: |
           cd sample-packages/docker
-          ID=(docker build -q -t $IMAGE_NAME:$IMAGE_VER .)
+          ID=(docker build -q -t ${{ env.IMAGE_NAME }}:${{ env.IMAGE_VER }} .)
           echo "ID=$ID" >> $GITHUB_ENV
 
       - name: Publish Docker container to package repo
         run: |
-          echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u $USERNAME --password-stdin
-          # docker tag ${{ env.ID }} ghcr.io/$USERNAME/$IMAGE_NAME:$IMAGE_VER
-          docker push ghcr.io/$USERNAME/$IMAGE_NAME:$IMAGE_VERS
+          echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ env.USERNAME }} --password-stdin
+          docker tag ${{ env.ID }} ghcr.io/${{ env.USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_VER }}
+          docker push ghcr.io/${{ env.USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_VER }}
           
