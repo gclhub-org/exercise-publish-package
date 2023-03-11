@@ -4,6 +4,7 @@ env:
   USERNAME: gclhub
   IMAGE_NAME: gclapp
   IMAGE_VER: 0.0.1
+  ACTIONS_STEP_DEBUG: true
 
 on:
   release:
