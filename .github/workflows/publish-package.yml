@@ -21,7 +21,7 @@ jobs:
       - name: Run Docker build
         run: |
           cd sample-packages/docker
-          ID=(docker build -q -t ${{ env.IMAGE_NAME }}:${{ env.IMAGE_VER }} .)
+          ID=$(docker build -q -t ${{ env.IMAGE_NAME }}:${{ env.IMAGE_VER }} .)
           echo "ID=$ID" >> $GITHUB_ENV
 
       - name: Publish Docker container to package repo
